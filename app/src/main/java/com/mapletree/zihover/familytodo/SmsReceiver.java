@@ -1,13 +1,21 @@
 package com.mapletree.zihover.familytodo;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.telephony.SmsMessage;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.mapletree.zihover.familytodo.model.Book;
+import com.mapletree.zihover.familytodo.sqlite.MySQLiteHelper;
+
+import java.util.List;
 
 /**
  * Created by DaveMacPro on 2015-10-19.
@@ -27,6 +35,7 @@ public class SmsReceiver extends BroadcastReceiver {
             }
 
             //pdu object null check
+            Log.d("t","--------------------dsf------------------------");
             Object[] pdusObj = (Object[]) bundle.get("pdus");
             if (pdusObj == null) {
                 return;
@@ -47,7 +56,12 @@ public class SmsReceiver extends BroadcastReceiver {
             intent.putExtra("test_test", str);
             intent.setClass(context, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            context.startActivity(intent);
+           // context.startActivity(intent);
+
+
+            sendNotification(context,str);
+
+            addSMS(context,str);
         }
 
        /* if (intent.getAction().equals(ACTION)) {
@@ -88,6 +102,46 @@ public class SmsReceiver extends BroadcastReceiver {
                 Toast.makeText(context, smsMessages[i].getMessageBody(), 0).show();
             }
         }*/
+
+
+    }
+
+    private void addSMS(Context context,String msg){
+        MySQLiteHelper db = new MySQLiteHelper(context);
+
+        // add Books
+        db.addBook(new Book(msg, "Wei Meng Lee"));
+
+    }
+
+    private void sendNotification(Context context, String msg){
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(context)
+                        .setSmallIcon(R.drawable.abc_btn_check_material)
+                        .setContentTitle(msg)
+                        .setContentText(msg);
+        // Creates an explicit intent for an Activity in your app
+                Intent resultIntent = new Intent(context, ResultActivity.class);
+
+        // The stack builder object will contain an artificial back stack for the
+        // started Activity.
+        // This ensures that navigating backward from the Activity leads out of
+        // your application to the Home screen.
+                TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+        // Adds the back stack for the Intent (but not the Intent itself)
+                stackBuilder.addParentStack(ResultActivity.class);
+        // Adds the Intent that starts the Activity to the top of the stack
+                stackBuilder.addNextIntent(resultIntent);
+                PendingIntent resultPendingIntent =
+                        stackBuilder.getPendingIntent(
+                                0,
+                                PendingIntent.FLAG_UPDATE_CURRENT
+                        );
+                mBuilder.setContentIntent(resultPendingIntent);
+                NotificationManager mNotificationManager =
+                        (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        // mId allows you to update the notification later on.
+                mNotificationManager.notify(1, mBuilder.build());
     }
 
 }

@@ -8,11 +8,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mapletree.zihover.familytodo.model.Book;
+import com.mapletree.zihover.familytodo.model.BookAdapter;
+import com.mapletree.zihover.familytodo.sqlite.MySQLiteHelper;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,23 +32,34 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),
                 test2, Toast.LENGTH_SHORT).show();
 
-        TextView textView2 = (TextView)findViewById(R.id.test);
 
-        textView2.setText(test2);
+        Book book = new Book();
+        book.setId(1);
+        book.setTitle(test2);
+        book.setAuthor("test222");
+
         if(test2!=null){
-            adapter.add(test2);
+            adapter.add(book);
         }
 
     }
-    private ArrayAdapter<String> adapter;
+    private BookAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+        MySQLiteHelper db = new MySQLiteHelper(this);
+
+        // get all books
+        ArrayList<Book> list = db.getAllBooks();
+
         ListView listView = (ListView)findViewById(R.id.listView);
-        adapter = new ArrayAdapter<String>(this, R.layout.list_fruit, FRUITS);
+        adapter = new BookAdapter(this,list);
+
         listView.setAdapter(adapter);
 
         listView.setTextFilterEnabled(true);
@@ -52,10 +69,10 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
                 // When clicked, show a toast with the TextView text
                 Toast.makeText(getApplicationContext(),
-                        ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+                        ((TextView)((LinearLayout) view).findViewById(R.id.title)).getText(), Toast.LENGTH_SHORT).show();
             }
         });
-        onNewIntent(getIntent());
+
     }
 
     @Override

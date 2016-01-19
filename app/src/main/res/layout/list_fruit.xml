@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent" android:layout_height="fill_parent"
-    android:padding="10dp" android:textSize="10sp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="40dp"
+    android:padding="2dp" android:textSize="10sp">
+    <TextView
+        android:layout_width="100dp" android:layout_height="fill_parent" android:layout_gravity="left"
+        android:padding="2dp" android:textSize="10sp" android:id="@+id/title">
 
-</TextView>
+    </TextView>
+    <TextView
+        android:layout_width="80dp" android:layout_height="fill_parent" android:layout_gravity="center"
+        android:padding="2dp" android:textSize="10sp" android:id="@+id/kind">
+
+    </TextView>
+    <TextView
+        android:layout_width="100dp" android:layout_height="fill_parent" android:layout_gravity="center"
+        android:padding="2dp" android:textSize="10sp" android:id="@+id/date">
+
+    </TextView>
+    <TextView
+        android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_gravity="right"
+        android:padding="2dp" android:textSize="10sp" android:id="@+id/value">
+
+    </TextView>
+</LinearLayout>
