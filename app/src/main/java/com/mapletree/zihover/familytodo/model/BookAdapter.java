@@ -28,18 +28,18 @@ public class BookAdapter extends ArrayAdapter<Book> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_fruit, parent, false);
         }
         // Lookup view for data population
-        TextView tvTitle = (TextView) convertView.findViewById(R.id.title);
-        TextView tvKind = (TextView) convertView.findViewById(R.id.kind);
+        //TextView tvTitle = (TextView) convertView.findViewById(R.id.title);
+        //TextView tvKind = (TextView) convertView.findViewById(R.id.kind);
 
-        TextView tvDate = (TextView) convertView.findViewById(R.id.date);
-        TextView tvValue = (TextView) convertView.findViewById(R.id.value);
+        //TextView tvDate = (TextView) convertView.findViewById(R.id.date);
+        //TextView tvValue = (TextView) convertView.findViewById(R.id.value);
 
         // Populate the data into the template view using the data object
-        tvTitle.setText(book.getTitle());
-        tvKind.setText(book.getAuthor());
+        //tvTitle.setText(book.getTitle());
+        //tvKind.setText(book.getAuthor());
 
-        tvDate.setText(book.getTitle());
-        tvValue.setText(book.getAuthor());
+        //tvDate.setText(book.getTitle());
+        //tvValue.setText(book.getAuthor());
 
         return convertView;
 

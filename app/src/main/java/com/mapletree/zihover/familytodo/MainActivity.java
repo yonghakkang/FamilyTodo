@@ -20,8 +20,13 @@ import com.mapletree.zihover.familytodo.sqlite.MySQLiteHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import io.realm.Realm;
+import io.realm.RealmResults;
+import model.Expense;
+import model.ExpenseAdapter;
 
+public class MainActivity extends AppCompatActivity {
+    private Realm realm;
     static  ArrayList<String> FRUITS = new ArrayList<String>();
     private String test2 = "";
     @Override
@@ -39,26 +44,37 @@ public class MainActivity extends AppCompatActivity {
         book.setAuthor("test222");
 
         if(test2!=null){
-            adapter.add(book);
+           // adapter.add(book);
         }
 
     }
-    private BookAdapter adapter;
-
+    //private BookAdapter adapter;
+    private ExpenseAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
+        if(realm == null){
+            realm = Realm.getInstance(this);
+        }
 
-        MySQLiteHelper db = new MySQLiteHelper(this);
+        //realm.beginTransaction();
+
+        RealmResults<Expense> result = realm.where(Expense.class).findAll();
+
+        // When the transaction is committed, all changes a synced to disk.
+        //realm.commitTransaction();
+
+       // MySQLiteHelper db = new MySQLiteHelper(this);
 
         // get all books
-        ArrayList<Book> list = db.getAllBooks();
+        //ArrayList<Book> list = db.getAllBooks();
 
         ListView listView = (ListView)findViewById(R.id.listView);
-        adapter = new BookAdapter(this,list);
+        //adapter = new BookAdapter(this,list);
+        adapter = new ExpenseAdapter(this,0,result,true);
 
         listView.setAdapter(adapter);
 

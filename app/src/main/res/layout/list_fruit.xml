@@ -1,25 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent" android:layout_height="40dp"
-    android:padding="2dp" android:textSize="10sp">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="26dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:textSize="10sp">
+
     <TextView
-        android:layout_width="100dp" android:layout_height="fill_parent" android:layout_gravity="left"
-        android:padding="2dp" android:textSize="10sp" android:id="@+id/title">
+        android:layout_width="100dp" android:layout_height="fill_parent" android:layout_gravity="left" android:textAlignment="gravity"
+        android:padding="2dp" android:textSize="10sp"  android:text="바르다김선생 잠"
+        android:gravity="center_vertical|left" android:id="@+id/title">
 
     </TextView>
+    <LinearLayout android:layout_height="fill_parent" android:layout_width="wrap_content" android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true" >
+        <TextView
+            android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:textAlignment="center"
+            android:textSize="10sp" android:text="KB국민" android:id="@+id/card">
+
+        </TextView>
+        <!--<TextView
+            android:layout_width="80dp" android:layout_height="fill_parent" android:layout_gravity="center"
+            android:padding="2dp" android:textSize="10sp" android:id="@+id/kind">
+
+        </TextView>-->
+        <android.support.v7.internal.widget.TintImageView android:paddingLeft="20dp" android:paddingRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:src="@drawable/cetogory_icon_01_s" />
+
+        <TextView  android:paddingRight="10dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"
+            android:padding="2dp" android:textSize="10sp" android:text="16.02.10"  android:id="@+id/date">
+
+        </TextView>
+    </LinearLayout>
     <TextView
-        android:layout_width="80dp" android:layout_height="fill_parent" android:layout_gravity="center"
-        android:padding="2dp" android:textSize="10sp" android:id="@+id/kind">
+        android:layout_width="70dp" android:layout_height="fill_parent"
+        android:padding="2dp" android:textSize="10sp" android:text="￦3,200" android:layout_alignParentRight="true"
+        android:textAlignment="gravity"
+        android:gravity="center_vertical|right" android:id="@+id/value">
 
     </TextView>
-    <TextView
-        android:layout_width="100dp" android:layout_height="fill_parent" android:layout_gravity="center"
-        android:padding="2dp" android:textSize="10sp" android:id="@+id/date">
-
-    </TextView>
-    <TextView
-        android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_gravity="right"
-        android:padding="2dp" android:textSize="10sp" android:id="@+id/value">
-
-    </TextView>
-</LinearLayout>
+</RelativeLayout>
