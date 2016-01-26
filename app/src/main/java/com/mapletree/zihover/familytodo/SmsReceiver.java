@@ -26,6 +26,7 @@ import com.mapletree.zihover.familytodo.sqlite.MySQLiteHelper;
 import java.util.List;
 
 import io.realm.Realm;
+import model.AutoIncrementHelper;
 import model.Expense;
 import model.Person;
 
@@ -130,11 +131,12 @@ public class SmsReceiver extends BroadcastReceiver {
             realm = Realm.getInstance(context);
         }
 
+        int index = AutoIncrementHelper.getNextIndex(context, Expense.class);
         realm.beginTransaction();
 
         // Add a Expense Info
         Expense exp = realm.createObject(Expense.class);
-        exp.setId(1);
+        exp.setId(index);
         exp.setTitle(msg);
         exp.setCard("KB꾹민");
         exp.setDate("16/01/21");

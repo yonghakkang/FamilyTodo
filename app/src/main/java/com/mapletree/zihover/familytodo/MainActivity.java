@@ -22,6 +22,7 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.Sort;
 import model.Expense;
 import model.ExpenseAdapter;
 
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private Realm realm;
     static  ArrayList<String> FRUITS = new ArrayList<String>();
     private String test2 = "";
+
+    private TextView monthBtn;
+    private LinearLayout bottomSubBar;
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -63,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         //realm.beginTransaction();
 
         RealmResults<Expense> result = realm.where(Expense.class).findAll();
+        result.sort("id", Sort.DESCENDING);
+
 
         // When the transaction is committed, all changes a synced to disk.
         //realm.commitTransaction();
@@ -85,9 +91,34 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
                 // When clicked, show a toast with the TextView text
                 Toast.makeText(getApplicationContext(),
-                        ((TextView)((LinearLayout) view).findViewById(R.id.title)).getText(), Toast.LENGTH_SHORT).show();
+                        ((TextView) ((LinearLayout) view).findViewById(R.id.title)).getText(), Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
+        monthBtn = (TextView) findViewById(R.id.month_click_btn);
+        monthBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*Toast.makeText(getApplicationContext(),
+                        monthBtn.getText(), Toast.LENGTH_SHORT).show();*/
+
+                if(bottomSubBar != null){
+                    int visible = bottomSubBar.getVisibility();
+
+                    if(visible == View.VISIBLE){
+                        bottomSubBar.setVisibility(View.GONE);
+                    }else{
+                        bottomSubBar.setVisibility(View.VISIBLE);
+                    }
+                }
+
+
+            }
+        });
+
+        bottomSubBar = (LinearLayout) findViewById(R.id.bottom_sub_bar);
 
     }
 
