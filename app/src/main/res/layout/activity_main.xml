@@ -6,7 +6,8 @@
 
    <!-- <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
         android:layout_height="wrap_content" />-->
-    <LinearLayout android:orientation="vertical"
+
+    <LinearLayout android:orientation="vertical" android:id="@+id/container"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent">
 
@@ -26,9 +27,78 @@
                    android:paddingLeft="4dp"
                    android:paddingRight="4dp"
                    android:paddingTop="@dimen/activity_vertical_margin"
-                   android:paddingBottom="@dimen/activity_vertical_margin"
+                   android:paddingBottom="50dp"
              />
+
+
 
     </LinearLayout>
 
+    <RelativeLayout android:layout_alignParentBottom="true"  android:background="@color/bottom_bar_bg_color"
+        android:layout_width="fill_parent" android:layout_height="60dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+       >
+
+        <!--<TextView
+            android:layout_width="100dp" android:layout_height="fill_parent" android:layout_gravity="left" android:textAlignment="gravity"
+            android:padding="2dp" android:textSize="10sp"  android:text="바르다김선생 잠"
+            android:gravity="center_vertical|left" >
+
+        </TextView>-->
+        <LinearLayout android:layout_height="fill_parent" android:layout_width="wrap_content" android:gravity="center_horizontal"
+            android:layout_centerHorizontal="true" >
+            <TextView
+                android:layout_width="40dp" android:layout_height="wrap_content" android:gravity="center" android:layout_gravity="center" android:textAlignment="center"
+                android:textSize="12sp" android:text="KB국민" >
+
+            </TextView>
+            <TextView
+                android:layout_width="50dp" android:paddingLeft="10dp"  android:layout_height="wrap_content" android:gravity="center" android:layout_gravity="center" android:textAlignment="center"
+                android:textSize="12sp" android:text="2016." >
+
+            </TextView>
+            <TextView  android:id="@+id/month_click_btn" android:paddingRight="30dp" android:gravity="center" android:layout_gravity="center"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textSize="18sp" android:text="01월"  >
+
+            </TextView>
+
+            <TextView
+               android:layout_width="50dp" android:paddingLeft="10dp" android:layout_height="wrap_content" android:layout_gravity="center" android:textAlignment="center"
+               android:textSize="12sp" android:text="전체">
+
+            </TextView>
+
+           <!-- <android.support.v7.internal.widget.TintImageView
+                android:layout_width="40dp"  android:paddingRight="10dp" android:layout_gravity="center"
+                android:layout_height="wrap_content" android:src="@drawable/cetogory_icon_01_s" />-->
+
+
+        </LinearLayout>
+       <!-- <TextView
+            android:layout_width="70dp" android:layout_height="fill_parent"
+            android:padding="2dp" android:textSize="10sp" android:text="￦3,200" android:layout_alignParentRight="true"
+            android:textAlignment="gravity"
+            android:gravity="center_vertical|right" >
+
+        </TextView>-->
+    </RelativeLayout>
+    <LinearLayout  android:id="@+id/bottom_sub_bar" android:visibility="visible" android:background="@color/bottom_sub_bar_bg_color"
+        android:layout_width="match_parent" android:layout_marginBottom="60dp" android:layout_alignParentBottom="true"
+        android:layout_height="40dp">
+        <TextView android:text="1  2  3  4  5  6  7  8  9  10  11  12"  android:textAlignment="center" android:layout_gravity="center"  android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="15sp" />
+    </LinearLayout>
+
+    <!--
+    <LinearLayout android:orientation="horizontal" android:gravity="center" android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" >
+        <TextView android:gravity="center" android:textAlignment="gravity"
+            android:text="2016.01" android:layout_width="wrap_content"
+            android:layout_height="wrap_content"  android:textSize="15sp" />
+
+    </LinearLayout>-->
 </RelativeLayout>

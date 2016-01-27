@@ -46,6 +46,7 @@ public class ExpenseAdapter extends RealmBaseAdapter<Expense> implements ListAda
         TextView tvValue = (TextView) convertView.findViewById(R.id.value);
 
         // Populate the data into the template view using the data object
+        //tvTitle.setText(Integer.toString(item.getId()));
         tvTitle.setText(item.getTitle());
         tvCard.setText(item.getCard());
 
