@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
                 // When clicked, show a toast with the TextView text
                 Toast.makeText(getApplicationContext(),
-                        ((TextView) ((LinearLayout) view).findViewById(R.id.title)).getText(), Toast.LENGTH_SHORT).show();
+                        ((TextView)((LinearLayout) view).findViewById(R.id.title)).getText(), Toast.LENGTH_SHORT).show();
             }
         });
 
