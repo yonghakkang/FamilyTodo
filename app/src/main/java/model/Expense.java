@@ -1,17 +1,49 @@
 package model;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by yonghak on 2016-01-25.
  */
 public class Expense extends RealmObject {
+    @PrimaryKey
     private int id;
-    private String title;
+
+    /**
+     * 장소명
+     */
+    private String place;
+    /**
+     * 카드 종류
+     */
     private String card;
-    private String cate;
+    /**
+     * 항목
+     */
+    private String category;
+    /**
+     * 날짜
+     */
     private String date;
+    /**
+     * 지출 금액
+     */
     private String value;
+
+    /**
+     * 장소 좌표
+     */
+    private String coordinate;
+
+    /**
+     * 메모
+     */
+    private String memo;
+
+
+
+
 
 
     public int getId() {
@@ -22,12 +54,12 @@ public class Expense extends RealmObject {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getPlace() {
+        return place;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setPlace(String place) {
+        this.place = place;
     }
 
     public String getCard() {
@@ -38,12 +70,12 @@ public class Expense extends RealmObject {
         this.card = card;
     }
 
-    public String getCate() {
-        return cate;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCate(String cate) {
-        this.cate = cate;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getDate() {
@@ -63,5 +95,20 @@ public class Expense extends RealmObject {
     }
 
 
+    public String getCoordinate() {
+        return coordinate;
+    }
+
+    public void setCoordinate(String coordinate) {
+        this.coordinate = coordinate;
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
 
 }

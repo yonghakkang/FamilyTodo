@@ -132,15 +132,20 @@ public class SmsReceiver extends BroadcastReceiver {
         }
 
         int index = AutoIncrementHelper.getNextIndex(context, Expense.class);
+
+        Expense exp = SmsParser.parse(msg);
+        exp.setId(index);
         realm.beginTransaction();
 
         // Add a Expense Info
-        Expense exp = realm.createObject(Expense.class);
+        realm.copyToRealmOrUpdate(exp);
+
+        /*Expense exp = realm.createObject(Expense.class);
         exp.setId(index);
-        exp.setTitle(msg);
+        exp.setPlace(msg);
         exp.setCard("KB꾹민");
         exp.setDate("16/01/21");
-        exp.setValue("30,000원");
+        exp.setValue("30,000원");*/
 
         // When the transaction is committed, all changes a synced to disk.
         realm.commitTransaction();
