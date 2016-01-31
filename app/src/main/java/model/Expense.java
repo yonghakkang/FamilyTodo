@@ -29,7 +29,13 @@ public class Expense extends RealmObject {
     /**
      * 지출 금액
      */
-    private String value;
+    private Double value;
+
+
+    /**
+     * 누적 금액
+     */
+    private Double accrueValue;
 
     /**
      * 장소 좌표
@@ -42,7 +48,10 @@ public class Expense extends RealmObject {
     private String memo;
 
 
-
+    /**
+     * sms 원본 메세지
+     */
+    private String originData;
 
 
 
@@ -86,14 +95,21 @@ public class Expense extends RealmObject {
         this.date = date;
     }
 
-    public String getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 
+    public Double getAccrueValue() {
+        return accrueValue;
+    }
+
+    public void setAccrueValue(Double accrueValue) {
+        this.accrueValue = accrueValue;
+    }
 
     public String getCoordinate() {
         return coordinate;
@@ -110,5 +126,14 @@ public class Expense extends RealmObject {
     public void setMemo(String memo) {
         this.memo = memo;
     }
+
+    public String getOriginData() {
+        return originData;
+    }
+
+    public void setOriginData(String originData) {
+        this.originData = originData;
+    }
+
 
 }

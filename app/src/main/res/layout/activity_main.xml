@@ -11,13 +11,41 @@
                   android:layout_width="match_parent"
                   android:layout_height="match_parent">
 
-        <LinearLayout android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"  android:textSize="10sp">
+        <LinearLayout android:orientation="vertical" android:gravity="center_vertical"
+            android:layout_width="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:layout_height="40dp"  >
+            <LinearLayout android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right" android:textAlignment="gravity" android:layout_gravity="right"
+                >
 
-            <TextView android:gravity="right" android:textAlignment="gravity"
-                      android:text="@string/hello_world" android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <TextView android:gravity="right" android:textAlignment="gravity" android:layout_gravity="center_vertical"
+                    android:text="전월:" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:textSize="10sp"/>
+
+                <TextView
+                    android:id="@+id/prev_totalValue" android:text="test"
+                    android:layout_width="wrap_content" android:textSize="10sp" android:textColor="@color/prev_expense_value_color"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"  >
+
+                <!--<TextView android:gravity="left" android:textAlignment="gravity" android:layout_gravity="center_vertical"
+                    android:text="EXPENSE" android:layout_width="wrap_content" android:textSize="15sp"
+                    android:layout_height="wrap_content" />-->
+
+                <TextView
+                    android:id="@+id/totalValue" android:text="test"
+                    android:gravity="right" android:textAlignment="gravity" android:layout_gravity="center_vertical"
+                    android:layout_width="match_parent" android:textSize="15sp" android:textColor="@color/expense_value_color"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
         </LinearLayout>
 
          <ListView android:id="@+id/listView"
@@ -47,31 +75,31 @@
 
         </TextView>-->
         <LinearLayout android:layout_height="fill_parent" android:layout_width="wrap_content" android:gravity="center_horizontal"
-            android:layout_centerHorizontal="true" >
+            android:layout_centerHorizontal="true" android:textSize="12sp" >
             <TextView
-                android:layout_width="50dp" android:layout_height="wrap_content" android:gravity="center" android:layout_gravity="center" android:textAlignment="center"
-                android:textSize="12sp" android:text="KB국민" >
+                android:layout_width="60dp" android:layout_height="wrap_content" android:gravity="center" android:layout_gravity="center" android:textAlignment="center"
+                 android:text="KB국민" >
 
             </TextView>
             <TextView
-                android:layout_width="50dp" android:paddingLeft="20dp"  android:layout_height="wrap_content" android:gravity="center" android:layout_gravity="center" android:textAlignment="center"
-                android:textSize="12sp" android:text="2016." >
+                android:layout_width="60dp" android:paddingLeft="20dp"  android:layout_height="wrap_content" android:gravity="center" android:layout_gravity="center" android:textAlignment="center"
+                 android:text="2016." >
 
             </TextView>
             <TextView  android:id="@+id/month_click_btn" android:gravity="center_horizontal" android:layout_gravity="center"
                 android:layout_width="30dp" android:layout_height="wrap_content"
-                android:textSize="19sp" android:text="01"  >
+                android:textSize="24sp" android:text="01"  >
 
             </TextView>
             <TextView
-                android:layout_width="50dp" android:paddingRight="10dp"  android:layout_height="wrap_content" android:gravity="center" android:layout_gravity="center" android:textAlignment="center"
-                android:textSize="12sp" android:text="건별." >
+                android:layout_width="60dp" android:paddingRight="10dp"  android:layout_height="wrap_content" android:gravity="center" android:layout_gravity="center" android:textAlignment="center"
+                 android:text="건별" >
 
             </TextView>
 
             <TextView
-               android:layout_width="50dp" android:paddingLeft="10dp" android:layout_height="wrap_content" android:layout_gravity="center" android:textAlignment="center"
-               android:textSize="12sp" android:text="전체">
+               android:layout_width="60dp" android:paddingLeft="10dp" android:layout_height="wrap_content" android:layout_gravity="center" android:textAlignment="center"
+                android:text="전체">
 
             </TextView>
 

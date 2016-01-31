@@ -1,5 +1,7 @@
 package com.mapletree.zihover.familytodo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,10 +40,10 @@ public class SmsParser {
 
 
         //String targetStr = "[Web발신]\nKB국민비씨 5*7*\n강*학님\n01/20 21:39\n8,000원\n진로마트\n누적 174,364원";
-        String targetStr = "[Web발신]\nKB국민비씨 5*7*\n강*학님\n01/20 21:39\n8,000원\n진로마트\n누적 174,364원";
+        String targetStr = sms;//"[Web발신]\nKB국민비씨 5*7*\n강*학님\n01/20 21:39\n8,000원\n진로마트\n누적 174,364원";
 
 
-        String regstr= "(KB국민비씨)\\s+(\\d{1}.*\\d{1}.*)\\s(.*)님\\s(\\d{2}/\\d{2})\\s(\\d{2}:\\d{2})\\s(\\d*,?\\d*)원\\s(.*)\\s누적\\s(\\d*,?\\d*)원";
+        String regstr= "(KB국민비씨)\\s+(\\d{1}.*\\d{1}.*)\\s(.*)님\\s(\\d{2}/\\d{2}\\s\\d{2}:\\d{2})\\s(\\d*,?\\d*|\\d*,?\\d*,?\\d*|\\d*,?\\d*,?\\d*,?\\d*)원\\s(.*)\\s누적\\s(\\d*,?\\d*|\\d*,?\\d*,?\\d*|\\d*,?\\d*,?\\d*,?\\d*)원";
 
 
 
@@ -75,22 +77,32 @@ public class SmsParser {
         1: KB국민비씨
         2: 5*7*
         3: 강*학
-        4: 01/20
-        5: 21:39
-        6: 8,000
-        7: 진로마트
-        8: 174,364*/
+        4: 01/20 21:39
+        5: 8,000
+        6: 진로마트
+        7: 174,364
+        8:
+        */
 
 
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+
+        String strDate = sdf.format(date);
         Expense exp = new Expense();
         while(matcher.find()){
             System.out.println(matcher.group(0));
+            System.out.println("5: "+matcher.group(5));
 
-            exp.setPlace(matcher.group(7)); //진로마트
+            exp.setPlace(matcher.group(6)); //진로마트
             exp.setCard(matcher.group(1));  //KB국민비씨
-            exp.setDate(matcher.group(4) + " " + matcher.group(5));
-            exp.setValue(matcher.group(6));
+            exp.setDate(strDate + " " + matcher.group(4));
 
+            String strNum = matcher.group(5).replaceAll("[^\\d]", "");
+
+            exp.setValue(Double.parseDouble(strNum));
+
+            exp.setOriginData(matcher.group(0));
 
             /*System.out.println("1: "+matcher.group(1));
             System.out.println("2: "+matcher.group(2));

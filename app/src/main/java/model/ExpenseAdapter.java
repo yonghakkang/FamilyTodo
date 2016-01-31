@@ -9,6 +9,13 @@ import android.widget.TextView;
 
 import com.mapletree.zihover.familytodo.R;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import io.realm.RealmBaseAdapter;
 import io.realm.RealmResults;
 
@@ -50,8 +57,38 @@ public class ExpenseAdapter extends RealmBaseAdapter<Expense> implements ListAda
         tvTitle.setText(item.getPlace());
         tvCard.setText(item.getCard());
 
-        tvDate.setText(item.getDate());
-        tvValue.setText(item.getValue());
+        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy MM/dd HH:mm");//dd/MM/yyyy
+        Date targetDate = null;
+        try {
+            targetDate = sdfDate.parse(item.getDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat compareSdf = new SimpleDateFormat("yyyy MM/dd");
+        Date date = new Date();
+        String strToday = compareSdf.format(date);
+        String strTargetDay = compareSdf.format(targetDate); //item.getDate().substring(0,10);
+
+        String showDate;
+        if(strTargetDay.equals(strToday)){
+            //오늘이면  시간을 보여준다.
+            //SimpleDateFormat timeSdf = new SimpleDateFormat("MM/dd");
+            showDate = item.getDate().substring(11);
+        }else{
+
+
+            //오늘 이전 날짜이면  날짜를 보여준다.
+            //SimpleDateFormat daySdf = new SimpleDateFormat("MM/dd");
+            showDate = item.getDate().substring(5,10);
+        }
+
+
+
+        tvDate.setText(showDate);
+
+        NumberFormat nf = NumberFormat.getCurrencyInstance();
+
+        tvValue.setText(nf.format(item.getValue()));
 
         //ViewHolder viewHolder;
         /*if (convertView == null) {

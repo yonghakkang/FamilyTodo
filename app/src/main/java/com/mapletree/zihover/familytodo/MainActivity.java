@@ -18,6 +18,8 @@ import com.mapletree.zihover.familytodo.model.Book;
 import com.mapletree.zihover.familytodo.model.BookAdapter;
 import com.mapletree.zihover.familytodo.sqlite.MySQLiteHelper;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,6 +73,20 @@ public class MainActivity extends AppCompatActivity {
         result.sort("id", Sort.DESCENDING);
 
 
+        Double nTotalVAlue = (Double)result.sum("value");
+
+        NumberFormat nf = NumberFormat.getCurrencyInstance();
+
+        TextView totalValue = (TextView)findViewById(R.id.totalValue);
+        totalValue.setText(nf.format(nTotalVAlue));
+
+
+        //전월 지출 표시
+        Double nPrevTotalVAlue = (Double)result.sum("value");
+
+        TextView prevTotalValue = (TextView)findViewById(R.id.prev_totalValue);
+        prevTotalValue.setText(nf.format(nPrevTotalVAlue));
+
         // When the transaction is committed, all changes a synced to disk.
         //realm.commitTransaction();
 
@@ -92,9 +108,35 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
                 // When clicked, show a toast with the TextView text
                 Toast.makeText(getApplicationContext(),
-                        ((TextView)((LinearLayout) view).findViewById(R.id.title)).getText(), Toast.LENGTH_SHORT).show();
+
+                        ((TextView) ((LinearLayout) view).findViewById(R.id.title)).getText(), Toast.LENGTH_SHORT).show();
+                        
             }
         });
+
+
+
+        monthBtn = (TextView) findViewById(R.id.month_click_btn);
+        monthBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*Toast.makeText(getApplicationContext(),
+                        monthBtn.getText(), Toast.LENGTH_SHORT).show();*/
+
+                if(bottomSubBar != null){
+                    int visible = bottomSubBar.getVisibility();
+
+                    if(visible == View.VISIBLE){
+                        bottomSubBar.setVisibility(View.GONE);
+                    }else{
+                        bottomSubBar.setVisibility(View.VISIBLE);
+                    }
+                }
+
+            }
+        });
+
+        bottomSubBar = (LinearLayout) findViewById(R.id.bottom_sub_bar);
 
 
 

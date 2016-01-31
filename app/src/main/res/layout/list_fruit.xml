@@ -1,45 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent" android:layout_height="26dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent" android:layout_height="30dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:textSize="10sp">
+    android:textSize="11sp">
 
     <TextView
         android:layout_width="100dp" android:layout_height="fill_parent" android:layout_gravity="left" android:textAlignment="gravity"
-        android:padding="2dp" android:textSize="10sp"  android:text="바르다김선생 잠"
+        android:padding="2dp"   android:text="브레댄코 건대입"
         android:gravity="center_vertical|left" android:id="@+id/title">
 
     </TextView>
     <LinearLayout android:layout_height="fill_parent" android:layout_width="wrap_content" android:gravity="center_horizontal"
-        android:layout_centerHorizontal="true" >
-        <TextView
-            android:layout_width="60dp" android:layout_height="wrap_content" android:gravity="center" android:layout_gravity="center" android:textAlignment="center"
-            android:textSize="10sp" android:text="KB국민비씨" android:id="@+id/card">
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
+        <!--<Space
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+            tools:ignore="Suspicious0dp" />-->
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="70dp" android:layout_height="wrap_content" android:gravity="center" android:layout_gravity="center" android:textAlignment="center"
+                android:text="KB국민비씨"  android:textSize="10sp" android:id="@+id/card">
 
-        </TextView>
-        <!--<TextView
-            android:layout_width="80dp" android:layout_height="fill_parent" android:layout_gravity="center"
-            android:padding="2dp" android:textSize="10sp" android:id="@+id/kind">
+            </TextView>
+            <!--<TextView
+                android:layout_width="80dp" android:layout_height="fill_parent" android:layout_gravity="center"
+                android:padding="2dp" android:textSize="10sp" android:id="@+id/kind">
 
-        </TextView>-->
-        <TextView android:paddingLeft="20dp" android:paddingRight="28dp" android:gravity="center" android:layout_gravity="center"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:textSize="10sp" android:text="16.02.10"  android:id="@+id/date">
+            </TextView>-->
+            <TextView android:gravity="center" android:layout_gravity="center"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="02/10"  android:textSize="10sp" android:id="@+id/date">
 
-        </TextView>
+            </TextView>
+
+        </LinearLayout>
+
 
         <android.support.v7.internal.widget.TintImageView
-            android:layout_width="40dp"  android:paddingRight="10dp" android:layout_gravity="center"
+            android:layout_width="30dp"  android:layout_gravity="center"
             android:layout_height="wrap_content" android:src="@drawable/cetogory_icon_01_s" />
 
 
     </LinearLayout>
     <TextView
-        android:layout_width="70dp" android:layout_height="fill_parent"
-        android:padding="2dp" android:textSize="10sp" android:text="￦3,200" android:layout_alignParentRight="true"
+        android:layout_width="100dp" android:layout_height="fill_parent"
+        android:padding="2dp"  android:text="￦9,912,001,200" android:layout_alignParentRight="true"
         android:textAlignment="gravity"
-        android:gravity="center_vertical|right" android:id="@+id/value">
+        android:gravity="center_vertical|right" android:id="@+id/value"
+        android:layout_toEndOf="@+id/linearLayout"
+        android:layout_toRightOf="@+id/linearLayout">
 
     </TextView>
 </RelativeLayout>
